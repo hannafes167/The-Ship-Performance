@@ -1,49 +1,51 @@
 # The Ship Performance
 
 # Bussiness Understanding
-Perusahaan pelayaran yang beroperasi di wilayah Gulf of Guinea menghadapi tantangan kompleks dalam mengelola armada kapal yang beragam, dengan rute pelayaran yang bervariasi dan kondisi cuaca yang berubah-ubah. Dalam konteks ini, pemahaman terhadap kinerja kapal menjadi sangat penting untuk menekan biaya, meningkatkan efisiensi energi, serta memaksimalkan pendapatan per perjalanan.
+Shipping companies operating in the Gulf of Guinea face complex challenges in managing a diverse fleet of vessels, navigating various routes, and dealing with unpredictable weather conditions. In this context, understanding ship performance is crucial to reducing operational costs, improving energy efficiency, and maximizing revenue per voyage.
 
 # Problem Statement
-Permasalahan utama yang dihadapi adalah:
+The primary business problems addressed in this project are:
 
-1. Bagaimana cara mengelompokkan kapal berdasarkan kesamaan karakteristik operasional dan performa mereka untuk mendukung pengambilan keputusan strategis?
+1. How can ships be grouped based on similar operational characteristics and performance metrics to support strategic decision-making?
 
-2. Bagaimana memprediksi status perawatan kapal (Maintenance_Status) secara akurat berdasarkan data operasional agar perusahaan dapat melakukan tindakan preventif?
+2. How can the ship's maintenance status (Maintenance_Status) be accurately predicted based on operational data to enable preventive actions?
 
 
-Tanpa solusi berbasis data, perusahaan berisiko:
+Without data-driven solutions, shipping companies risk the following:
 
-1. Mengalokasikan sumber daya secara tidak efisien.
+1. Inefficient allocation of resources.
 
-2. Melewatkan peluang penghematan dari armada yang lebih efisien.
+2. Missed opportunities for cost savings through fleet optimization.
 
-3. Mengalami kerugian finansial akibat perawatan reaktif yang tidak terencana.
+3. Financial losses due to unplanned and reactive maintenance.
+   
 
 # Goals
 ## Clustering
-1. Mengelompokkan kapal ke dalam segmen-segmen berdasarkan karakteristik seperti efisiensi energi, beban muatan, kecepatan, jarak tempuh, dan waktu turnaround.
+1. Segment ships based on key characteristics such as energy efficiency, cargo weight, speed, distance traveled, and turnaround time.
 
-2. Mengidentifikasi pola dalam kelompok kapal berperforma tinggi maupun rendah.
+2. Identify patterns among high- and low-performing vessel groups.
 
-3. Memberikan insight bagi manajemen dalam pengelolaan armada, perencanaan rute, dan kebijakan pemeliharaan.
+3. Provide actionable insights for fleet management, route planning, and maintenance strategy.
+
 ## Classification
-1. Membangun model klasifikasi untuk memprediksi Maintenance_Status (Good, Fair, Critical) berdasarkan fitur-fitur operasional seperti engine power, kondisi cuaca, jumlah perjalanan mingguan, dan average load.
+1. Build a classification model to predict the Maintenance_Status of ships (Good, Fair, Critical) using operational features such as engine power, weather conditions, weekly voyage count, and average load.
 
-2. Memberikan sistem deteksi dini untuk kapal yang berisiko mengalami gangguan teknis.
+2. Develop an early warning system to detect ships at risk of technical issues.
 
-3. Membantu tim operasional merencanakan pemeliharaan secara preventif dan efisien.
+3. Assist operational teams in planning preventive maintenance more effectively and efficiently.
 
-# Persiapan
+# Preparing
 ## Dataset
-Nama: Ship Performance Dataset
+Name: Ship Performance Dataset
 
-Jumlah Data: 2736 baris, 18 kolom
+Total Data: 2736 baris, 18 kolom
 
-Jenis Data:
+Type Data:
 
-Numerik: Speed_Over_Ground_knots, Engine_Power_kW, Distance_Traveled_nm, Operational_Cost_USD, Revenue_per_Voyage_USD, Efficiency_nm_per_kWh, Draft_Meters, Cargo_weight_tons, Seasonal_Impact_Score, Turnaround_Time_hours, Weekly_Voyage_Count, Average_Load_Percentage
+Numeric: Speed_Over_Ground_knots, Engine_Power_kW, Distance_Traveled_nm, Operational_Cost_USD, Revenue_per_Voyage_USD, Efficiency_nm_per_kWh, Draft_Meters, Cargo_weight_tons, Seasonal_Impact_Score, Turnaround_Time_hours, Weekly_Voyage_Count, Average_Load_Percentage
 
-Kategorikal: Ship_Type, Route_Type, Engine_Type, Maintenance_Status, Weather_Condition
+Categorikal: Ship_Type, Route_Type, Engine_Type, Maintenance_Status, Weather_Condition
 
 Link: (https://github.com/hannafes167/The-Ship-Performance/blob/main/Ship_Performance_Dataset.csv)
 
@@ -75,11 +77,41 @@ from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, r
 ```
 
 ### Workflow
-1. Exploratory Data Analysis (EDA)
-2. Preprocessing
-3. Modelling
-4. Trainining
-5. Inference
+- Exploratory Data Analysis (EDA)
+  
+  Conducted initial exploration to understand the structure, distribution, and relationships within the dataset. This includes summary statistics, visualizations, and correlation analysis to identify patterns and potential issues such as missing values or outliers.
+
+- Data Preprocessing
+  
+  Prepared the data for modeling by:
+  1. Handling missing values
+  2. Checked duplicate
+  3. Checked Outliers
+  4. Encoding categorical variables
+  5. Feature scaling (e.g., using StandardScaler)
+  6. Selecting relevant features for clustering and classification tasks
+
+- Modeling
+  
+  Clustering: Applied K-Means algorithm to group ships into clusters based on operational characteristics. The optimal number of clusters was determined using the Elbow Method.
+
+  Classification: Built a supervised learning model to predict ship maintenance status. Algorithms such as Random Forest were used due to their robustness and interpretability.
+
+- Training & Evaluation
+  
+  For classification: Split the data into training and test sets, trained the model, and evaluated its performance using metrics such as accuracy, precision, recall, and confusion matrix.
+
+  For clustering: Evaluated cluster quality using visual methods (PCA, silhouette plots) and business interpretability.
+
+- Inference & Insights
+  
+  Interpreted model results to extract meaningful business insights.
+
+  For clustering: Identified high- and low-performance ship segments.
+
+  For classification: Highlighted important features that influence maintenance status predictions and how this can inform preventive maintenance strategies.
+
+
 
 # Output
 ## Hasil Clustering
